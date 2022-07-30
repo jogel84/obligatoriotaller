@@ -1,0 +1,9 @@
+[rocky]
+cliente1 ansible_host=172.16.2.21
+
+[ubuntu]
+cliente2 ansible_host=172.16.2.22
+
+[linux:children]
+rocky
+ubuntu
