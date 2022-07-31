@@ -6,16 +6,18 @@
     mysql_root_password: 'Password2022.'
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Instalar paquetes requeridos
-      yum:
-        name:
-          - mysql-server
-          - mysql-devel
-          - python39
-          - python39-devel
-          - python39-pip
-          - gcc
-        state: latest
+
+    - name: Install a list of packages with a list variable
+      ansible.builtin.yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - mysql-server
+        - mysql-devel
+        - python39
+        - python39-devel
+        - python39-pip
+        - gcc
 
     - name: Instalar modulo pip requerido para Ansible
       pip:
