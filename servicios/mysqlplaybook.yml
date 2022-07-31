@@ -1,0 +1,31 @@
+- name: Instalar mysql server 8
+  hosts: rocky
+  gather_facts: false
+  become: true
+  vars:
+    mysql_root_password: 'Password2022.'
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Instalar paquetes requeridos
+      yum:
+        name:
+          - mysql-server
+          - mysql-devel
+          - python39
+          - python39-devel
+          - python39-pip
+          - gcc
+        state: latest
+
+    - name: Instalar modulo pip requerido para Ansible
+      pip:
+        name:
+          - PyMySQL
+        state: present
+        executable: pip3
+
+    - name: Habilitar y ejecutar servicio mysqld
+      systemd:
+        name: mysqld
+        state: started
+        enabled: yes
