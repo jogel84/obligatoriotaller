@@ -1,14 +1,10 @@
 ---
 - name: Instalar Tomcat10
-  hosts: ubuntu
+  hosts: linux:children
   remote_user: ansible
   become: true
   tasks:
-    - name: Instalar paquetes
-      apt:
-        upgrade: yes
-        update_cache: yes
- 
+  
     - name: Crear usuario Tomcat
       user:
         name: tomcat
@@ -29,71 +25,6 @@
         remote_src: yes
         extra_opts: [--strip-components=1]
  
-    - name: Crear directorio Tomcat
-      file:
-        path: /opt/tomcat10
-        owner: tomcat
-        group: tomcat
-        mode: 755
-        recurse: yes
- 
-    - name: Descargar y descomprimir tomcat10 
-      unarchive:
-        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.tar.gz
-        dest: /opt/tomcat10
-        remote_src: yes
-        extra_opts: [--strip-components=1]
- 
-    - name: Cambiar propietario del directorio /opt/tomcat10
-      file:
-        path: /opt/tomcat10
-        owner: tomcat
-        group: tomcat
-        mode: "u+rwx,g+rx,o=rx"
-        recurse: yes
-        state: directory
- 
-    - name: Copiar servicio Tomcat a systemd
-      copy:
-        src: /opt/servicios/tomcat.service
-        dest: /etc/systemd/system/
-        mode: 0755
- 
-    - name: Iniciar y habilitar Tomcat 10
-      systemd:
-        name: tomcat
-        state: started
-        daemon_reload: true
-    
-- name: Instalar Tomcat10 en Rocky
-  hosts: rocky
-  remote_user: ansible
-  become: true
-  tasks:
-    - name: Instalar paquetes
-      yum:
-        update_only: yes
- 
-    - name: Crear usuario Tomcat
-      user:
-        name: tomcat
- 
-    - name: Crear grupo Tomcat
-      group:
-        name: tomcat
-
-    - name: Crear directorio JDK 11
-      file:
-        path: /opt/jdk11
-        recurse: yes
-
-    - name: Descargar y descomprimir java 11 
-      unarchive:
-        src: https://builds.openlogic.com/downloadJDK/openlogic-openjdk/11.0.15+10/openlogic-openjdk-11.0.15+10-linux-x64.tar.gz
-        dest: /opt/jdk11
-        remote_src: yes
-        extra_opts: [--strip-components=1]
-
     - name: Crear directorio Tomcat
       file:
         path: /opt/tomcat10
