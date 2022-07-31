@@ -4,7 +4,7 @@
   remote_user: ansible
   become: true
   tasks:
-  
+
     - name: Crear usuario Tomcat
       user:
         name: tomcat
@@ -60,3 +60,14 @@
         name: tomcat
         state: started
         daemon_reload: true
+
+- name: Reglas firewalld en Rocky
+  hosts: rocky
+  remote_user: ansible
+  become: true
+  tasks:
+    - name: Permite trafico al 8080/tcp para tomcat
+      ansible.posix.firewalld:
+      port: 8080/tcp
+      permanent: yes
+      state: enabled
