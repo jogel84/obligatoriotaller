@@ -17,7 +17,7 @@
       group:
         name: tomcat
 
-    - name: Crear directorio Tomcat
+    - name: Crear directorio JDK 11
       file:
         path: /opt/jdk11
         recurse: yes
@@ -81,12 +81,19 @@
     - name: Crear grupo Tomcat
       group:
         name: tomcat
- 
-    - name: Instalar Java
-      yum:
-        name: java-11-openjdk
-        state: present
- 
+
+    - name: Crear directorio JDK 11
+      file:
+        path: /opt/jdk11
+        recurse: yes
+
+    - name: Descargar y descomprimir java 11 
+      unarchive:
+        src: https://builds.openlogic.com/downloadJDK/openlogic-openjdk/11.0.15+10/openlogic-openjdk-11.0.15+10-linux-x64.tar.gz
+        dest: /opt/jdk11
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+
     - name: Crear directorio Tomcat
       file:
         path: /opt/tomcat10
