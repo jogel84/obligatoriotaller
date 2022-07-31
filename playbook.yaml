@@ -1,6 +1,6 @@
 ---
 - name: Instalar Tomcat10
-  hosts: linux:children
+  hosts: linux
   remote_user: ansible
   become: true
   tasks:
@@ -68,6 +68,10 @@
   tasks:
     - name: Permite trafico al 8080/tcp para tomcat
       ansible.posix.firewalld:
-      port: 8080/tcp
-      permanent: yes
-      state: enabled
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+    - name: Recargar reglas de firewall
+      systemd:
+        name: firewalld
+        state: reloaded
