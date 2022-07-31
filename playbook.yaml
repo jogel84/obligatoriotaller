@@ -17,10 +17,18 @@
       group:
         name: tomcat
  
-    - name: Instalar Java
-      apt:
-        name: openjdk-11-jdk
-        state: present
+
+    - name: Descargar y descomprimir openjdk-11 
+      unarchive:
+        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.tar.gz
+        dest: /opt/
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+        
+#    - name: Instalar Java
+#      apt:
+#        name: openjdk-11-jdk
+#        state: present
  
     - name: Crear directorio Tomcat
       file:
@@ -59,16 +67,19 @@
         daemon_reload: true
 
 
+    
+    
 
-- name: Instalar Tomcat10
+
+    
+- name: Instalar Tomcat10 en Rocky
   hosts: rocky
   remote_user: ansible
   become: true
   tasks:
     - name: Instalar paquetes
       yum:
-        update: yes
-        upgrade: yes
+        update_only: yes
  
     - name: Crear usuario Tomcat
       user:
@@ -80,7 +91,7 @@
  
     - name: Instalar Java
       yum:
-        name: openjdk-11-jdk
+        name: java-11-openjdk
         state: present
  
     - name: Crear directorio Tomcat
