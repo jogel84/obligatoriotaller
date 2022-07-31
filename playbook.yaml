@@ -1,6 +1,6 @@
 ---
 - name: Instalar Tomcat10
-  hosts: Ubuntu
+  hosts: ubuntu
   remote_user: ansible
   become: true
   tasks:
@@ -19,7 +19,7 @@
  
     - name: Instalar Java
       apt:
-        name: default-jdk
+        name: openjdk-11-jdk
         state: present
  
     - name: Crear directorio Tomcat
@@ -48,7 +48,7 @@
  
     - name: Copiar servicio Tomcat a systemd
       copy:
-        src: /etc/tomcat.service
+        src: /opt/servicios/tomcat.service
         dest: /etc/systemd/system/
         mode: 0755
  
