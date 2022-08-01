@@ -1,5 +1,5 @@
 ---
-- name: Instalacion dnf ubuntu
+- name: Actualizar paquetes e instalar mariadb ubuntu
   hosts: ubuntu
   remote_user: ansible
   become: true
@@ -8,18 +8,19 @@
       ansible.builtin.apt:
         update_cache: yes
 
-    - name: Instalar dnf
-      ansible.builtin.apt:
-        name: dnf
-        state: present
+    - name: Instalar paquetes requeridos para mariadb
+      apt:
+        name:
+          - mariadb-server
+          - python3
+          - python3-pip
+          - gcc
+        state: latest
 
-- name: Instalar y configurar mariadb
-  hosts: linux
+- name: Actualizar paquetes e instalar mariadb rocky
+  hosts: rocky
   remote_user: ansible
-  gather_facts: false
   become: true
-  vars:
-    mariadb_root_password: 'Password2022.'
   tasks:
 
     - name: Actualizar paquetes
@@ -37,6 +38,16 @@
           - python39-pip
           - gcc
         state: latest
+
+
+- name: Configurar mariadb
+  hosts: linux
+  remote_user: ansible
+  gather_facts: false
+  become: true
+  vars:
+    mariadb_root_password: 'Password2022.'
+  tasks:
 
     - name: Instalar modulos pip requeridos
       pip:
