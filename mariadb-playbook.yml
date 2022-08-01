@@ -1,14 +1,15 @@
 ---
-- name: Actualizar paquetes e instalar mariadb ubuntu
-  hosts: ubuntu
+- name: Actualizar paquetes e instalar mariadb
+  hosts: linux
   remote_user: ansible
   become: true
   tasks:
-    - name: Upgrade repositorios
+    - name: Upgrade repositorios en Ubuntu
       ansible.builtin.apt:
         update_cache: yes
+      when: ansible_facts['distribution'] == ¨ubuntu¨      
 
-    - name: Instalar paquetes requeridos para mariadb
+    - name: Instalar paquetes requeridos para mariadb en Ubuntu
       apt:
         name:
           - mariadb-server
@@ -16,19 +17,21 @@
           - python3-pip
           - gcc
         state: latest
+      when: ansible_facts['distribution'] == ¨ubuntu¨
 
-- name: Actualizar paquetes e instalar mariadb rocky
-  hosts: rocky
-  remote_user: ansible
-  become: true
-  tasks:
+# - name: Actualizar paquetes e instalar mariadb rocky
+#   hosts: rocky
+#   remote_user: ansible
+#   become: true
+#   tasks:
 
-    - name: Actualizar paquetes
+    - name: Actualizar paquetes en Rocky
       dnf:
         name: "*"
         state: latest
-
-    - name: Instalar paquetes requeridos para mariadb
+      when: ansible_facts['distribution'] == ¨rocky¨
+      
+    - name: Instalar paquetes requeridos para mariadb en Rocky
       dnf:
         name:
           - mariadb-server
@@ -38,6 +41,7 @@
           - python39-pip
           - gcc
         state: latest
+      when: ansible_facts['distribution'] == ¨rocky¨
 
 - name: Configurar servicio mariadb
   hosts: linux
