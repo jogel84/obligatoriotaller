@@ -44,8 +44,6 @@
   remote_user: ansible
   gather_facts: false
   become: true
-  #vars:
-  #  mariadb_root_password: 'Password2022.'
   tasks:
 
     - name: Instalar modulos pip requeridos
@@ -70,8 +68,6 @@
   remote_user: ansible
   gather_facts: false
   become: true
-  #vars:
-  #  mariadb_root_password: 'Password2022.'
   tasks:
 
     - name: Ensure root user can only login from localhost
@@ -141,8 +137,6 @@
   remote_user: ansible
   gather_facts: false
   become: true
-  #vars:
-  #  mariadb_root_password: 'Password2022.'
   tasks:
 
     - name: Ensure root user can only login from localhost
