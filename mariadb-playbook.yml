@@ -4,8 +4,12 @@
   remote_user: ansible
   become: true
   tasks:
+    - name: Upgrade repositorios
+      ansible.builtin.apt:
+        update_cache: yes
+
     - name: Instalar dnf
-      apt:
+      ansible.builtin.apt:
         name: dnf
         state: present
 
