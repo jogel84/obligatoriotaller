@@ -39,11 +39,6 @@
           - gcc
         state: latest
 
-- name: Añadir .my.cnf
-  template:
-    src: credenciales/my.cnf
-    dest: /root/.my.cnf
-
 - name: Configurar mariadb
   hosts: linux
   remote_user: ansible
@@ -64,6 +59,11 @@
         name: mariadb
         state: started
         enabled: yes
+        
+    - name: Añadir .my.cnf
+      template:
+        src: credenciales/my.cnf
+        dest: /root/.my.cnf
 
     - name: Ensure root user can only login from localhost
       mysql_user:
