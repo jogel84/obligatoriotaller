@@ -1,17 +1,29 @@
 ---
-- name: Install and configure mariadb server on rocky Linux
-  hosts: rocky
+- name: Instalacion dnf ubuntu
+  hosts: ubuntu
+  remote_user: ansible
+  become: true
+  tasks:
+    - name: Instalar dnf
+      apt:
+        name: dnf
+        state: present
+
+- name: Instalar y configurar mariadb
+  hosts: linux
+  remote_user: ansible
   gather_facts: false
   become: true
   vars:
     mariadb_root_password: 'Password2022.'
   tasks:
-    - name: Upgrade packages
+
+    - name: Actualizar paquetes
       dnf:
         name: "*"
         state: latest
 
-    - name: Ensure required packages are installed
+    - name: Instalar paquetes requeridos para mariadb
       dnf:
         name:
           - mariadb-server
@@ -22,13 +34,13 @@
           - gcc
         state: latest
 
-    - name: Install Required pip modules
+    - name: Instalar modulos pip requeridos
       pip:
         name:
           - PyMySQL
         state: present
 
-    - name: Ensure mysql service is running
+    - name: Iniciar y habilitar servicio mariadb
       systemd:
         name: mariadb
         state: started
