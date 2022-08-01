@@ -39,6 +39,10 @@
           - gcc
         state: latest
 
+- name: Añadir .my.cnf
+  template:
+    src: credenciales/my.cnf
+    dest: /root/.my.cnf
 
 - name: Configurar mariadb
   hosts: linux
@@ -116,3 +120,8 @@
       with_items:
         - FLUSH PRIVILEGES
       changed_when: False
+
+    - name: Borrar .my.conf
+      file:
+        path: /root/.my.cnf
+        state: absent
