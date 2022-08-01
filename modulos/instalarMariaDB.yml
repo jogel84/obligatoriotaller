@@ -1,0 +1,21 @@
+- name: Instalar paquetes requeridos para mariadb en Ubuntu
+  apt:
+    name:
+      - mariadb-server
+      - python3
+      - python3-pip
+      - gcc
+    state: latest
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Instalar paquetes requeridos para mariadb en Rocky
+  dnf:
+    name:
+      - mariadb-server
+      - mariadb-devel
+      - python39
+      - python39-devel
+      - python39-pip
+      - gcc
+    state: latest
+  when: ansible_facts['distribution'] == "Rocky"
