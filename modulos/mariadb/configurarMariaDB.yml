@@ -1,6 +1,6 @@
 - name: Añadir .my.cnf
   template:
-    src: credenciales/my.cnf
+    src: ../credenciales/my.cnf
     dest: /home/ansible/.my.cnf
   when: ansible_facts['distribution'] == "Ubuntu"
   
