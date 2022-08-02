@@ -66,7 +66,7 @@
   command: |
     mysql -p{{ mariadb_root_password }} -ne "{{ item }}"
   with_items:
-    - {{ mariadb_database_name }}
+    - CREATE DATABASE BD_HERNESTO
   changed_when: False
 
 - name: Reload privilege tables

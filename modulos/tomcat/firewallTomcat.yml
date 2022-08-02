@@ -1,0 +1,12 @@
+- name: Permite trafico al 8080/tcp para tomcat
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: yes
+    state: enabled
+  when: ansible_facts['distribution'] == "Rocky"
+
+- name: Recargar reglas de firewall
+  systemd:
+    name: firewalld
+    state: reloaded
+  when: ansible_facts['distribution'] == "Rocky"

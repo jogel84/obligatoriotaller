@@ -1,0 +1,12 @@
+---
+- name: Instalar Tomcat9
+  hosts: linux
+  remote_user: ansible
+  become: true
+  tasks:
+ 
+    - name: Instalacion de jdk 11 y Tomcat 9
+      ansible.builtin.include_tasks: ../modulos/tomcat/instalacionjdk-Tomcat.yml
+
+    - name: Permitir trafico al 8080/tcp
+      ansible.builtin.include_tasks: ../modulos/tomcat/firewallTomcat.yml
