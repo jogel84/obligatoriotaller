@@ -1,0 +1,11 @@
+- name: Instalar modulos pip requeridos
+  pip:
+    name:
+      - PyMySQL
+    state: present
+
+- name: Iniciar y habilitar servicio mariadb
+  systemd:
+    name: mariadb
+    state: started
+    enabled: yes
