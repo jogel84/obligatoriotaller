@@ -1,7 +1,7 @@
 - name: Upgrade repositorios en Ubuntu
   ansible.builtin.apt:
-  update_cache: yes
-when: ansible_facts['distribution'] == "Ubuntu"
+    update_cache: yes
+  when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: Actualizar paquetes en Rocky
   dnf:
