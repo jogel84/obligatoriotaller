@@ -19,7 +19,9 @@ Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
     sudo useradd ansible
     sudo passwd <contraseña>
     ```
+
 - Agregar la siguiente linea al final del archivo, en el caso de Rocky `ansible ALL=(ALL) NOPASSWD: ALL`, en el caso de Ubuntu `ansible ALL=(ALL:ALL) NOPASSWD: ALL`.
+
     ```
     sudo visudo
     ```
@@ -29,6 +31,7 @@ Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
 Instalaremos ansible en el servidor bastion
 
 - En caso que el servidor bastion sea de la familia de RedHat, se debe agregar el siguiente paquete extra
+
     ```
     sudo yum install epel-release
     ```
@@ -40,12 +43,15 @@ Instalaremos ansible en el servidor bastion
     sudo useradd ansible
     sudo passwd <contraseña>
     ```
+
 - Generar par de clave SSH desde el usuario ansible
     ```
     ssh-keygen
     ```
+
 - Copiar la clave ssh desde el usuario ansible al resto de los servidores
     ```
     ssh-copy-id <IP servidor destino>
     ```
+    
 - Copiar los archivos del repositorio a la ubicacion de preferencia, ejemplo `/opt/obligatoriotaller`
