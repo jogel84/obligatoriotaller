@@ -14,17 +14,38 @@ Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
 
 ### Servidores destino de Ansible
 
-- Se crea usuario Ansible `sudo useradd ansible` y se establece contraseña `sudo passwd <contraseña>`
-- Ejecutando el comando `sudo visudo` se agrega la siguiente linea al final del archivo en el caso de Rock `ansible ALL=(ALL) NOPASSWD: ALL`, en el caso de Ubuntu `ansible ALL=(ALL:ALL) NOPASSWD: ALL`
+- Se crea usuario Ansible y se establece contraseña 
+    ```
+    sudo useradd ansible
+    sudo passwd <contraseña>
+    ```
+- Agregar la siguiente linea al final del archivo, en el caso de Rocky `ansible ALL=(ALL) NOPASSWD: ALL`, en el caso de Ubuntu `ansible ALL=(ALL:ALL) NOPASSWD: ALL`.
+    ```
+    sudo visudo
+    ```
 
 ### Servidor bastion
 
 Instalaremos ansible en el servidor bastion
 
-- En caso que el servidor bastion sea de la familia de RedHat, se debe agregar el siguiente paquete extra `sudo yum install epel-release`
-- En caso de utilizar un servidor bastion con Rocky: `sudo yum install ansible`
-- En caso de utilizar un servidor bastion con Ubuntu: `sudo apt-get install ansible`
-- Se crea usuario Ansible `sudo useradd ansible` y se establece contraseña `sudo passwd <contraseña>`
-- Generar par de clave SSH desde el usuario ansible `ssh-keygen`
-- Copiar la clave ssh desde el usuario ansible al resto de los servidores 
+- En caso que el servidor bastion sea de la familia de RedHat, se debe agregar el siguiente paquete extra
+    ```
+    sudo yum install epel-release
+    ```
+- Instalar ansible 
+    Rocky:  `sudo yum install ansible`
+    Ubuntu: `sudo apt-get install ansible`
+- Crear usuario Ansible y establecer contraseña 
+    ```
+    sudo useradd ansible
+    sudo passwd <contraseña>
+    ```
+- Generar par de clave SSH desde el usuario ansible
+    ```
+    ssh-keygen
+    ```
+- Copiar la clave ssh desde el usuario ansible al resto de los servidores
+    ```
+    ssh-copy-id <IP servidor destino>
+    ```
 - Copiar los archivos del repositorio a la ubicacion de preferencia, ejemplo `/opt/obligatoriotaller`
