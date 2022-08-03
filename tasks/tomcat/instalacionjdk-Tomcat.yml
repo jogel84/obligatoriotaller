@@ -44,7 +44,7 @@
 
 - name: Copiar servicio Tomcat a systemd
   copy:
-    src: ../servicios/tomcat.service
+    src: ../files/tomcat.service
     dest: /etc/systemd/system/
     mode: 0755
 

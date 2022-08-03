@@ -6,7 +6,7 @@
   tasks:
  
     - name: Instalacion de jdk 11 y Tomcat 9
-      ansible.builtin.include_tasks: ../modulos/tomcat/instalacionjdk-Tomcat.yml
+      ansible.builtin.include_tasks: ../tasks/tomcat/instalacionjdk-Tomcat.yml
 
     - name: Permitir trafico al 8080/tcp
-      ansible.builtin.include_tasks: ../modulos/tomcat/firewallTomcat.yml
+      ansible.builtin.include_tasks: ../tasks/tomcat/firewallTomcat.yml

@@ -6,13 +6,13 @@
   tasks:
   
     - name: Upgrade repositorios
-      ansible.builtin.include_tasks: ../modulos/mariadb/actualizarPaquetes.yml
+      ansible.builtin.include_tasks: ../tasks/mariadb/actualizarPaquetes.yml
   
     - name: Instalar MariaDB
-      ansible.builtin.include_tasks: ../modulos/mariadb/instalarMariaDB.yml
+      ansible.builtin.include_tasks: ../tasks/mariadb/instalarMariaDB.yml
 
     - name: Configurar servicio mariadb
-      ansible.builtin.include_tasks: ../modulos/mariadb/configurarServicioMariaDB.yml
+      ansible.builtin.include_tasks: ../tasks/mariadb/configurarServicioMariaDB.yml
 
     - name: Configurar mariadb
-      ansible.builtin.include_tasks: ../modulos/mariadb/configurarMariaDB.yml
+      ansible.builtin.include_tasks: ../tasks/mariadb/configurarMariaDB.yml
