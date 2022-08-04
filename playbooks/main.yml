@@ -1,5 +1,5 @@
 ---
-- name: Instalacion configuración de tomcat9 y mariadb server
+- name: Instalacion/configuración de tomcat9 y mariadb server
   hosts: linux
   remote_user: ansible
   become: true
@@ -20,7 +20,7 @@
     - name: Crear base de datos para aplicacion todo
       ansible.builtin.include_tasks: ../tasks/mariadb/creacionDatabaseApp.yml
       
-    - name: Instalacion de jdk 11 y Tomcat 9
+    - name: Instalacion de jdk 1.8 y Tomcat 9
       ansible.builtin.include_tasks: ../tasks/tomcat/instalacionjdk-Tomcat.yml
 
     - name: Permitir trafico al 8080/tcp
