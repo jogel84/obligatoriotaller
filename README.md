@@ -15,7 +15,6 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 &nbsp;
 ## **tasks**
 
-&nbsp;
 ### **Tareas para mariadb**
 
 `actualizarPaquetes.yml` 
