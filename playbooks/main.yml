@@ -1,5 +1,5 @@
 ---
-- name: Instalacion/configuración de tomcat9 y mariadb server
+- name: Instalación/configuración de tomcat9 y mariadb server
   hosts: linux
   remote_user: ansible
   become: true
