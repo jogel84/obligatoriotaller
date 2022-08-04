@@ -12,4 +12,4 @@
       ansible.builtin.include_tasks: ../tasks/tomcat/firewallTomcat.yml
     
     - name: Configuración de la aplicacion todo.war
-    ansible.builtin.include_tasks: ../tasks/tomcat/configuracionApp.yml
+      ansible.builtin.include_tasks: ../tasks/tomcat/configuracionApp.yml
