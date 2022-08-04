@@ -1,4 +1,4 @@
-- name: Instalar paquetes requeridos para mariadb en Ubuntu
+- name: Instalar paquetes requeridos para mariadb 10.x en Ubuntu
   apt:
     name:
       - mariadb-server
@@ -8,7 +8,7 @@
     state: latest
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: Instalar paquetes requeridos para mariadb en Rocky
+- name: Instalar paquetes requeridos para mariadb 10.x en Rocky
   dnf:
     name:
       - mariadb-server
