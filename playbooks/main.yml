@@ -1,0 +1,30 @@
+---
+- name: Instalacion configuración de tomcat9 y mariadb server
+  hosts: linux
+  remote_user: ansible
+  become: true
+  tasks:
+  
+    - name: Upgrade repositorios
+      ansible.builtin.include_tasks: ../tasks/mariadb/actualizarPaquetes.yml
+  
+    - name: Instalar MariaDB
+      ansible.builtin.include_tasks: ../tasks/mariadb/instalarMariaDB.yml
+
+    - name: Configurar servicio mariadb
+      ansible.builtin.include_tasks: ../tasks/mariadb/configurarServicioMariaDB.yml
+
+    - name: Configurar mariadb
+      ansible.builtin.include_tasks: ../tasks/mariadb/configuracionInicialMariaDB.yml
+
+    - name: Crear base de datos para aplicacion todo
+      ansible.builtin.include_tasks: ../tasks/mariadb/creacionDatabaseApp.yml
+      
+    - name: Instalacion de jdk 11 y Tomcat 9
+      ansible.builtin.include_tasks: ../tasks/tomcat/instalacionjdk-Tomcat.yml
+
+    - name: Permitir trafico al 8080/tcp
+      ansible.builtin.include_tasks: ../tasks/tomcat/firewallTomcat.yml
+    
+    - name: Configuración de la aplicacion todo.war
+      ansible.builtin.include_tasks: ../tasks/tomcat/configuracionApp.yml

@@ -1,4 +1,4 @@
-- name: Upgrade repositorios en Ubuntu
+- name: Upgrade paquetes en Ubuntu
   ansible.builtin.apt:
     update_cache: yes
   when: ansible_facts['distribution'] == "Ubuntu"

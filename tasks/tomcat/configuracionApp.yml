@@ -8,7 +8,7 @@
     src: ../files/app.properties
     dest: /opt/config
 
-- name: Copiar app.properties
+- name: Copiar todo.war
   copy:
     src: ../files/todo.war
     dest: /opt/tomcat9/webapps
