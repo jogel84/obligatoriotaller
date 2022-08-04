@@ -15,4 +15,4 @@
       ansible.builtin.include_tasks: ../tasks/mariadb/configurarServicioMariaDB.yml
 
     - name: Configurar mariadb
-      ansible.builtin.include_tasks: ../tasks/mariadb/configurarMariaDB.yml
+      ansible.builtin.include_tasks: ../tasks/mariadb/configuracionInicialMariaDB.yml

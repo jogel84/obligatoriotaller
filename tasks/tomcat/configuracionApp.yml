@@ -1,0 +1,19 @@
+- name: Crear directorio config para la conexión con la DB
+  file:
+    path: /opt/config
+    recurse: yes
+
+- name: Copiar app.properties
+  copy:
+    src: ../files/app.properties
+    dest: /opt/config
+
+- name: Crear directorio config para la conexión con la DB
+  file:
+    path: /opt/tomcat9/webapps/todo
+    recurse: yes
+
+- name: Copiar app.properties
+  copy:
+    src: ../files/todo.war
+    dest: /opt/tomcat9/webapps/todo

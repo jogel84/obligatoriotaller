@@ -6,8 +6,8 @@ After=network.target
 User=tomcat
 Group=tomcat
 WorkingDirectory=/opt/tomcat9
-Environment=JRE_HOME=/opt/jdk11
-Environment=JAVA_HOME=/opt/jdk11
+Environment=JRE_HOME=/opt/jdk1.8
+Environment=JAVA_HOME=/opt/jdk1.8
 Environment=CATALINA_HOME=/opt/tomcat9
 Environment=CATALINE_BASE=/opt/tomcat9
 ExecStart=/opt/tomcat9/bin/catalina.sh run

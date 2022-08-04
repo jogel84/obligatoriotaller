@@ -10,3 +10,6 @@
 
     - name: Permitir trafico al 8080/tcp
       ansible.builtin.include_tasks: ../tasks/tomcat/firewallTomcat.yml
+    
+    - name: Configuración de la aplicacion todo.war
+    ansible.builtin.include_tasks: ../tasks/tomcat/configuracionApp.yml

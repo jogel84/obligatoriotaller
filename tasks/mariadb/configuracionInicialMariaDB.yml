@@ -62,13 +62,6 @@
     - DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
   changed_when: False
 
-- name: Crear base de datos para proyecto
-  command: |
-    mysql -p{{ mariadb_root_password }} -ne "{{ item }}"
-  with_items:
-    - CREATE DATABASE {{ mariadb_database_name }}
-  changed_when: False
-
 - name: Reload privilege tables
   command: |
     mysql -p{{ mariadb_root_password }} -ne "{{ item }}"
