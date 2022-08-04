@@ -16,3 +16,6 @@
 
     - name: Configurar mariadb
       ansible.builtin.include_tasks: ../tasks/mariadb/configuracionInicialMariaDB.yml
+
+    - name: Crear base de datos para aplicacion todo
+      ansible.builtin.include_tasks: ../tasks/mariadb/creacionDatabaseApp.yml
