@@ -6,15 +6,15 @@
   group:
     name: tomcat
 
-- name: Crear directorio JDK 11
+- name: Crear directorio JDK 1.8
   file:
-    path: /opt/jdk11
+    path: /opt/jdk1.8
     recurse: yes
 
-- name: Descargar y descomprimir java 11 
+- name: Descargar y descomprimir java 1.8 
   unarchive:
-    src: https://builds.openlogic.com/downloadJDK/openlogic-openjdk/11.0.15+10/openlogic-openjdk-11.0.15+10-linux-x64.tar.gz
-    dest: /opt/jdk11
+    src: https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u332-b09/openlogic-openjdk-8u332-b09-linux-x64.tar.gz
+    dest: /opt/jdk1.8
     remote_src: yes
     extra_opts: [--strip-components=1]
 
