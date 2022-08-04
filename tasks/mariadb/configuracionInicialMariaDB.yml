@@ -1,7 +1,7 @@
 - name: Añadir .my.cnf
   template:
     src: ../files/my.cnf
-    dest: /home/ansible/.my.cnf
+    dest: /root/.my.cnf
   when: ansible_facts['distribution'] == "Ubuntu"
   
 - name: Ensure root user can only login from localhost
@@ -71,6 +71,6 @@
 
 - name: Borrar .my.conf
   file:
-    path: /home/ansible/.my.cnf
+    path: /root/.my.cnf
     state: absent
   when: ansible_facts['distribution'] == "Ubuntu"
