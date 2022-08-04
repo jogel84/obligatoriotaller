@@ -55,7 +55,7 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 `instalacionjdk-Tomcat.yml`
 
 - Creacion de directorios para aplicativo tomcat9 y jdk 1.8
-- Descarga, instalacion, creacion de usuario para de tomcat9 con privilegios necesarios.
+- Descarga, instalacion y creacion de usuario para tomcat9 con privilegios necesarios.
 - Descarga e instalacion de jdk 1.8
 
 &nbsp;
