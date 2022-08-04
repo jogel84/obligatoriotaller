@@ -1,17 +1,22 @@
-# Obligatorio Taller Linux - ORT 2022
+# **Obligatorio Taller Linux - ORT 2022**
 
 Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
 
-## Solución
+---
+
+&nbsp;
+## **Solución**
 
 La solución está compuesta por un playbook de Ansible. 
 El playbook `main.yml` realiza la instalación y configuración inicial de la ultima versión disponible del motor mariadb (10.x), mas la creación de una base de datos para la aplicación, tambien realiza la instalación de tomcat 9 en la ubicación `/opt/tomcat9` y la descarga de jdk 1.8 necesario para que funcione el aplicativo.
 
 El playbook ejecutará tareas (archivos yml configurados en la solución) para los equipos con sistema operativo Rocky Linux y Ubuntu Server.
 
-## tasks
+&nbsp;
+## **tasks**
 
-### Tareas para mariadb
+&nbsp;
+### **Tareas para mariadb**
 
 `actualizarPaquetes.yml` 
 - Actualiza y descarga los paquetes de los servidores Ubuntu Server y Rocky Linux
@@ -37,7 +42,8 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 
 - Instalacion de mariadb junto con todas las dependencias necesarias.
 
-### Tareas para tomcat
+&nbsp;
+### **Tareas para tomcat**
 
 `configuracionApp.yml`
 
@@ -53,7 +59,8 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 - Descarga, instalacion, creacion de usuario para de tomcat9 con privilegios necesarios.
 - Descarga e instalacion de jdk 1.8
 
-## files
+&nbsp;
+### **files**
 
 `app.properties`
 
@@ -71,27 +78,18 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 
 - Archivo de servicio para tomcat
 
-### inventario
+&nbsp;
+### **inventario**
 
 - Contiene los hosts para la administración de Ansible
 
-### ansible.cfg
+&nbsp;
+### **ansible.cfg**
 
 - Archivo de configuración de Ansible el cual indica la ubicación del inventario
 
-## Ejecución de playbooks
-
-Para ejecutar los comandos como están descritos mas abajo, es necesario posicionarse en la ruta principal del proyecto.
-
-Ejecutar playbook `main.yml`
-
-Se deben configurar los valores de las variables `mariadb_root_password=<CONTRASEÑA_BD>` por la contraseña para el usuario root que desee.
-
-```
-$ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTRASEÑA_BD>"
-```
-
-## Requermimientos
+&nbsp;
+## **Requermimientos**
 
 - Servidor bastion con Ansible instalado para la ejeción de playbooks
 - Se requiere de intercambio de claves SSH entre el servidor bastion y los demas servidores.
@@ -99,8 +97,8 @@ $ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTR
 - Comunicación a nivel de red entre todos los servidores al servidor bastion
 - Acceso a internet en todos los equipos para actualizar y descargar los archivos de instalación.
 
-
-## Configuración de los sevidores
+&nbsp;
+## **Configuración de los sevidores**
 
 Se instala 3 servidores linux de tal forma:
 
@@ -108,11 +106,12 @@ Se instala 3 servidores linux de tal forma:
 - 1 servidor cliente con sistema operativo Rocky Linux
 - 1 servidor cliente con sistema operativo Ubuntu Server
 
-### Esquema de particiones de todos los servidores:
+&nbsp;
+### **Esquema de particiones de todos los servidores:**
 
 Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
 
-`df -h`
+&nbsp; `df -h`
 
 | Filesystem |   Size   |  Used  |   Avail   |  Use%  | Mounted on |
 | ---------- | -------- | ------ | --------- | ------ | ---------- |
@@ -123,14 +122,14 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
 | /dev/mapper/rl_cliente1-home| 1014M|   40M|  975M|   4%| /home|
 | /dev/mapper/rl_cliente1-opt|   5.0G  |542M  |4.5G  |11%| /opt|
 
-`swapon --show`
+&nbsp; `swapon --show`
 
 |NAME      |TYPE      |SIZE |USED |PRIO|
 |----      |----      |---- |---- |----|
 /dev/dm-1| partition|   2G|   0B|   -2|
 
-
-### Servidores destino de Ansible
+&nbsp;
+### **Servidores destino de Ansible**
 
 - Crear usuario Ansible y establecer contraseña 
     ```
@@ -143,8 +142,8 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
     ```
     $ sudo visudo
     ```
-
-### Servidor bastion
+&nbsp;
+### **Servidor bastion**
 
 - En caso que el servidor bastion sea de la familia de RedHat, se debe agregar el siguiente paquete extra
 
@@ -174,3 +173,16 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
     ```
 
 - Copiar los archivos del repositorio a la ubicacion de preferencia, ejemplo `/opt/obligatoriotaller`
+
+&nbsp;
+## **Ejecución de playbooks**
+
+Para ejecutar los comandos como están descritos mas abajo, es necesario posicionarse en la ruta principal del proyecto.
+
+Ejecutar playbook `main.yml`
+
+Se deben configurar los valores de las variables `mariadb_root_password=<CONTRASEÑA_BD>` por la contraseña para el usuario root que desee.
+
+```
+$ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTRASEÑA_BD>"
+```
