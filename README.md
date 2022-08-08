@@ -4,6 +4,7 @@ Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
 
 ---
 
+
 &nbsp;
 ## **Solución**
 
@@ -174,7 +175,7 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
 - Copiar los archivos del repositorio a la ubicacion de preferencia, ejemplo `/opt/obligatoriotaller`
 
 &nbsp;
-## **Ejecución de playbooks**
+## **Ejecución del playbook**
 
 Para ejecutar los comandos como están descritos mas abajo, es necesario posicionarse en la ruta principal del proyecto.
 
@@ -185,3 +186,9 @@ Se deben configurar los valores de las variables `mariadb_root_password=<CONTRAS
 ```
 $ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTRASEÑA_BD>"
 ```
+
+&nbsp;
+
+![Alt text](/capturas/Playbook1.png)
+![Alt text](/capturas/Playbook2.png)
+![Alt text](/capturas/Playbook3.png)
