@@ -1,6 +1,6 @@
 # **Obligatorio Taller Linux - ORT 2022**
 
-Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
+Instalación de Tomcat9 y MariaDB en Rocky Linux y Ubuntu Server.
 
 ---
 
@@ -9,7 +9,7 @@ Instalación de Tomcat9, MariaDB en Rocky Linux y Ubuntu Server
 ## **Solución**
 
 La solución está compuesta por un playbook de Ansible. 
-El playbook `main.yml` realiza la instalación y configuración inicial de la ultima versión disponible del motor mariadb (10.x), mas la creación de una base de datos para la aplicación, tambien realiza la instalación de tomcat 9 en la ubicación `/opt/tomcat9` y la descarga de jdk 1.8 necesario para que funcione el aplicativo.
+El playbook `main.yml` realiza la instalación y configuración inicial de la ultima versión disponible del motor mariadb (10.x), mas la creación de una base de datos para la aplicación, tambien realiza la instalación de tomcat 9 en la ubicación `/opt/tomcat9` y la descarga de jdk 1.8, necesario para que funcione el aplicativo.
 
 El playbook ejecutará tareas (archivos yml configurados en la solución) para los equipos con sistema operativo Rocky Linux y Ubuntu Server.
 
@@ -19,82 +19,83 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 ### **Tareas para mariadb**
 
 `actualizarPaquetes.yml` 
-- Actualiza y descarga los paquetes de los servidores Ubuntu Server y Rocky Linux
+
+- Actualiza y descarga los paquetes de los servidores Ubuntu Server y Rocky Linux.
 
 `configuracionInicialMariaDB.yml`
 
-- Realiza la configuracion inicial del motor de base de datos, configura la contraseña root y el acceso solamente mediante localhost.
-- Realiza el equivalente al mysql_secure_instalation con las siguientes configuraciones
-    - Remueve usuarios anonimos
-    - Deshabilita el login remoto con usuario root
-    - Remueve la BD de test
+- Realiza la configuración inicial del motor de base de datos, configura la contraseña root y el acceso solamente mediante localhost.
+- Realiza el equivalente al mysql_secure_instalation con las siguientes configuraciones.
+    - Remueve usuarios anónimos.
+    - Deshabilita el login remoto con usuario root.
+    - Remueve la BD de test.
 
 `configurarServicioMariaDB.yml`
 
-- Realiza instalación de PyMySQL e inicia y habilita el servicio mariadb
+- Realiza instalación de PyMySQL, inicia y habilita el servicio mariadb.
 
 `creacionDatabaseApp.yml`
 
-- Creacion de la BD `todo` junto con la creacion de las tablas `users` y `todos`
-- Se crea usuario `todo` en el servidor de la BD con permisos totales a todas las tablas de la BD `todo`
+- Creación de la BD `todo` junto con la creación de las tablas `users` y `todos`.
+- Se crea usuario `todo` en el servidor de la BD con permisos totales a todas las tablas de la BD `todo`.
 
 `instalarMariaDB.yml`
 
-- Instalacion de mariadb junto con todas las dependencias necesarias.
+- Instalación de mariadb junto con todas las dependencias necesarias.
 
 &nbsp;
 ### **Tareas para tomcat**
 
 `configuracionApp.yml`
 
-- Crea directorio y copia archivos necesarios para la configuración de la aplicación
+- Crea directorio y copia archivos necesarios para la configuración de la aplicación.
 
 `firewallTomcat.yml`
 
-- Crea regla de firewall para Rock Linux para permitir el trafico en el puerto 8080/TCP
+- Crea regla de firewall en Rock Linux para permitir el trafico en el puerto 8080/TCP.
 
 `instalacionjdk-Tomcat.yml`
 
-- Creacion de directorios para aplicativo tomcat9 y jdk 1.8
-- Descarga, instalacion, creacion de usuario para de tomcat9 con privilegios necesarios.
-- Descarga e instalacion de jdk 1.8
+- Creación de directorios para aplicativo tomcat9 y jdk 1.8.
+- Descarga, instalación y creación de usuario para tomcat9 con privilegios necesarios.
+- Descarga e instalación de jdk 1.8.
 
 &nbsp;
 ### **files**
 
 `app.properties`
 
-- Archivo necesario para la conexión de la BD
+- Archivo necesario para la conexión de la BD.
 
 `my.cnf`
 
-- Credenciales de acceso para root en el servidor de BD
+- Credenciales de acceso para root en el servidor de BD.
 
 `todo.war`
 
-- Aplicativo
+- Aplicativo.
 
 `tomcat.service`
 
-- Archivo de servicio para tomcat
+- Archivo de servicio para tomcat.
 
 &nbsp;
 ### **inventario**
 
-- Contiene los hosts para la administración de Ansible
+- Contiene los hosts para la administración de Ansible.
 
 &nbsp;
 ### **ansible.cfg**
 
-- Archivo de configuración de Ansible el cual indica la ubicación del inventario
+- Archivo de configuración de Ansible el cual indica la ubicación del inventario.
 
 &nbsp;
 ## **Requermimientos**
 
-- Servidor bastion con Ansible instalado para la ejeción de playbooks
-- Se requiere de intercambio de claves SSH entre el servidor bastion y los demas servidores.
-- El usuario Ansible creado en todos los servidores y con privilegios de sudo sin especificar contraseña `ansible ALL=(ALL:ALL) NOPASSWD: ALL`
-- Comunicación a nivel de red entre todos los servidores al servidor bastion
+- Servidor bastión con Ansible instalado para la ejeción de playbooks.
+- Se requiere de intercambio de claves SSH entre el servidor bastión y el resto de los servidores.
+- Usuario Ansible creado en todos los servidores y con privilegios de sudo sin especificar contraseña `ansible ALL=(ALL:ALL) NOPASSWD: ALL`
+- Comunicación a nivel de red entre todos los servidores al servidor bastion.
 - Acceso a internet en todos los equipos para actualizar y descargar los archivos de instalación.
 
 &nbsp;
@@ -102,12 +103,12 @@ El playbook ejecutará tareas (archivos yml configurados en la solución) para l
 
 Se instala 3 servidores linux de tal forma:
 
-- 1 servidor bastion con sistema operativo Rocky Linux, el cual es el controlador para el despliegue de playbooks de Ansible
-- 1 servidor cliente con sistema operativo Rocky Linux
-- 1 servidor cliente con sistema operativo Ubuntu Server
+- 1 servidor bastión con sistema operativo Rocky Linux, el cual es el controlador para el despliegue de playbooks de Ansible.
+- 1 servidor cliente con sistema operativo Rocky Linux.
+- 1 servidor cliente con sistema operativo Ubuntu Server.
 
 &nbsp;
-### **Esquema de particiones de todos los servidores:**
+### **Esquema de particiones de todos los servidores**
 
 Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
 
@@ -131,7 +132,7 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
 &nbsp;
 ### **Servidores destino de Ansible**
 
-- Crear usuario Ansible y establecer contraseña 
+- Crear usuario Ansible y establecer contraseña .
     ```
     $ sudo useradd ansible
     $ sudo passwd <contraseña>
@@ -143,9 +144,9 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
     $ sudo visudo
     ```
 &nbsp;
-### **Servidor bastion**
+### **Servidor bastión**
 
-- En caso que el servidor bastion sea de la familia de RedHat, se debe agregar el siguiente paquete extra
+- En caso que el servidor bastión sea de la familia de RedHat, se debe agregar el siguiente paquete extra.
 
     ```
     $ sudo yum install epel-release
@@ -156,23 +157,23 @@ Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
     Ubuntu: $ sudo apt-get install ansible
      ```
 
-- Crear usuario Ansible y establecer contraseña 
+- Crear usuario Ansible y establecer contraseña.
     ```
     $ sudo useradd ansible
     $ sudo passwd <contraseña>
     ```
 
-- Generar par de clave SSH desde el usuario ansible
+- Generar par de claves SSH desde el usuario ansible.
     ```
     $ ssh-keygen
     ```
 
-- Copiar la clave ssh desde el usuario ansible al resto de los servidores
+- Copiar la clave ssh desde el usuario ansible al resto de los servidores.
     ```
     $ ssh-copy-id <IP servidor destino>
     ```
 
-- Copiar los archivos del repositorio a la ubicacion de preferencia, ejemplo `/opt/obligatoriotaller`
+- Copiar los archivos del repositorio a la ubicación de preferencia, ejemplo `/opt/obligatoriotaller`.
 
 &nbsp;
 ## **Ejecución del playbook**
@@ -181,14 +182,17 @@ Para ejecutar los comandos como están descritos mas abajo, es necesario posicio
 
 Ejecutar playbook `main.yml`
 
-Se deben configurar los valores de las variables `mariadb_root_password=<CONTRASEÑA_BD>` por la contraseña para el usuario root que desee.
+Se deben configurar los valores de las variables `mariadb_root_password=<CONTRASEÑA_BD>` por la contraseña para el usuario root del servidor de BD que desee.
 
 ```
 $ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTRASEÑA_BD>"
 ```
+<<<<<<< HEAD
 
 &nbsp;
 
 ![Alt text](/capturas/Playbook1.png)
 ![Alt text](/capturas/Playbook2.png)
 ![Alt text](/capturas/Playbook3.png)
+=======
+>>>>>>> fa12ac858801182e23368f5532a1f7fd92cc01fd
