@@ -108,6 +108,12 @@ Se instala 3 servidores linux de tal forma:
 - 1 servidor cliente con sistema operativo Ubuntu Server.
 
 &nbsp;
+## **Diagrama de red de la solución**
+&nbsp;
+
+![Alt text](/capturas/Diagrama_de_RED.png)
+
+&nbsp;
 ### **Esquema de particiones de todos los servidores**
 
 Se utiliza LVM para realizar el esquema de particiones en todos los servidores.
