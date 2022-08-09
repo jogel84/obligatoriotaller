@@ -193,12 +193,9 @@ Se deben configurar los valores de las variables `mariadb_root_password=<CONTRAS
 ```
 $ ansible-playbook playbooks/main.yml --extra-vars "mariadb_root_password=<CONTRASEÑA_BD>"
 ```
-<<<<<<< HEAD
 
 &nbsp;
 
 ![Alt text](/capturas/Playbook1.png)
 ![Alt text](/capturas/Playbook2.png)
 ![Alt text](/capturas/Playbook3.png)
-=======
->>>>>>> fa12ac858801182e23368f5532a1f7fd92cc01fd
